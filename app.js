@@ -2,7 +2,7 @@ $(document).ready(function() {
     var monthlySalaryCost = 0;
     var yearlySalary = 0;
     var monthlyCost = 0;
-    var array = [];
+    var employees = [];
     $('#employeeInfo').on('submit', function(event) {
         event.preventDefault();
 
@@ -22,31 +22,34 @@ $(document).ready(function() {
         });
 
         console.log(values);
+        employees.push(values);
 
         // clear out inputs
-        $('#employeeInfo').find('input[type=text]').val('');
-
+        $('#employeeInfo').find('input[type=text], input[type=number]').val('');
+        // brings cursor back to First Name Box, allowing quicker entry/ better UI
+        $('#employeeFirstName').focus();
+        // calc salaries total per year & monthly company costs
+        monthlySalaryCost = parseInt(values.employeeSalary);
+        yearlySalary = yearlySalary + monthlySalaryCost;
+        monthlyCost = yearlySalary / 12;
         // append to DOM
         appendDom(values);
 
         function appendDom(empInfo) {
             $('#container').append('<div class="person"></div>');
+            // making a shortcut to access last children of #container
             var $el = $('#container').children().last();
-            // calc salaries total per year & monthly company costs
-            monthlySalaryCost = parseInt(values.employeeSalary);
-            yearlySalary = yearlySalary + monthlySalaryCost;
-            monthlyCost = yearlySalary / 12;
-            $el.append('<p>' + empInfo.employeeFirstName +
+            $el.append('<p>' + 'Employee Info: ' + empInfo.employeeFirstName +
                 ' ' + empInfo.employeeLastName +
-                ' ' + empInfo.employeeID + ' ' +
-                empInfo.employeeJobTitle + ' ' +
-                empInfo.employeeSalary + ' ' +
+                ', ' + 'ID: ' + empInfo.employeeID + ', ' +
+                'Title: ' + empInfo.employeeJobTitle + ', ' +
+                'Salary: ' + empInfo.employeeSalary +
                 '<br></br>' + 'Yearly Cost to Company:' +
                 ' ' + yearlySalary + ' ' + '<br></br>' +
                 'Monthly Salary Costs:' +
                 ' ' + Math.round(monthlyCost) + '</p>');
             $('#container').append('<button class="deleteMe">Delete</button>');
-
+            // delete button
             $('.deleteMe').on('click', function() {
                 $('.person').last().remove();
                 $('.deleteMe').last().remove();
