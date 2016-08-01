@@ -44,7 +44,14 @@ $(document).ready(function() {
                 '<br></br>' + 'Yearly Cost to Company:' +
                 ' ' + yearlySalary + ' ' + '<br></br>' +
                 'Monthly Salary Costs:' +
-                ' ' + monthlyCost + '</p>');
+                ' ' + Math.round(monthlyCost) + '</p>');
+            $('#container').append('<button class="deleteMe">Delete</button>');
+
+            $('.deleteMe').on('click', function() {
+                $('.person').last().remove();
+                $('.deleteMe').last().remove();
+
+            });
         }
     });
 });
