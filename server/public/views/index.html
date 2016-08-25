@@ -2,41 +2,40 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="stylesheet.css" />
+    <link rel="stylesheet" href="../styles/stylesheet.css" />
     <title>Weekend Project 1</title>
 </head>
 
-<body>
+<body ng-app="myApp">
     <h1>Employee Intake Form</h1>
-    <div>
+    <div ng-controller="taskController">
         <form id="employeeInfo">
             <label for="employeeFirstName">Employee First Name:</label>
-            <input type="text" id="employeeFirstName" name="employeeFirstName" />
+            <input ng-model="employeeFirstName" type="text" id="employeeFirstName" name="employeeFirstName" />
             <br></br>
             <label for="employeeLastName">Employee Last Name:</label>
-            <input type="text" id="employeeLastName" name="employeeLastName" />
+            <input ng-model="employeeLastName" type="text" id="employeeLastName" name="employeeLastName" />
             <br></br>
             <label for="employeeID">Employee ID:</label>
-            <input type="text" id="employeeID" name="employeeID" />
+            <input ng-model="employeeID" type="text" id="employeeID" name="employeeID" />
             <br></br>
             <label for="employeeJobTitle">Job Title:</label>
-            <input type="text" id="employeeJobTitle" name="employeeJobTitle" />
+            <input ng-model="employeeJobTitle" type="text" id="employeeJobTitle" name="employeeJobTitle" />
             <br></br>
             <!-- type = number this time -->
             <label for="employeeSalary">Salary:</label>
-            <input type="number" id="employeeSalary" name="employeeSalary" />
+            <input ng-model="employeeSalary" type="number" id="employeeSalary" name="employeeSalary" />
 
-            <input type="submit" value="Submit Employee" />
+            <input ng-click="appendDom()" type="submit" value="Submit Employee" />
         </form>
     </div>
     <div id="container">
-        <h2> Employees </h2>
-
+        <h2> Employees </h2> {{employeeinfo}}
 
     </div>
     <!-- <script src="jquery-3.0.0.min.js" type="text/javascript"></script> -->
-    <script src="clientapp.js" type="text/javascript">
-    </script>
+    <script type="text/javascript" src="../vendors/angular.min.js"></script>
+    <script type="text/javascript" src="../scripts/clientapp.js"></script>
 </body>
 
 </html>
