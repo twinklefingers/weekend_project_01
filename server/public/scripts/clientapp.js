@@ -58,3 +58,7 @@ $(document).ready(function() {
         }
     });
 });
+
+// Right now, the delete function deletes everything - to fix this,
+//  we could make the on.click function grab the individual button's 
+//  parent container as the target to delete, by using $(this).parent 
