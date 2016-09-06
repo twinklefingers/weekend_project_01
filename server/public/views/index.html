@@ -3,35 +3,39 @@
 
 <head>
     <link rel="stylesheet" href="../styles/stylesheet.css" />
-    <title>Weekend Project 1</title>
+    <title>Angular Conversion</title>
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="formController">
     <h1>Employee Intake Form</h1>
-    <div ng-controller="taskController">
-        <form id="employeeInfo">
+    <div>
+        <form ng-model="formContent" id="employeeInfo">
             <label for="employeeFirstName">Employee First Name:</label>
-            <input ng-model="employeeFirstName" type="text" id="employeeFirstName" name="employeeFirstName" />
+            <input ng-model="formContent.employeeFirstName" type="text" id="employeeFirstName" name="employeeFirstName" />
             <br></br>
             <label for="employeeLastName">Employee Last Name:</label>
-            <input ng-model="employeeLastName" type="text" id="employeeLastName" name="employeeLastName" />
+            <input ng-model="formContent.employeeLastName" type="text" id="employeeLastName" name="employeeLastName" />
             <br></br>
             <label for="employeeID">Employee ID:</label>
-            <input ng-model="employeeID" type="text" id="employeeID" name="employeeID" />
+            <input ng-model="formContent.employeeID" type="text" id="employeeID" name="employeeID" />
             <br></br>
             <label for="employeeJobTitle">Job Title:</label>
-            <input ng-model="employeeJobTitle" type="text" id="employeeJobTitle" name="employeeJobTitle" />
+            <input ng-model="formContent.employeeJobTitle" type="text" id="employeeJobTitle" name="employeeJobTitle" />
             <br></br>
             <!-- type = number this time -->
             <label for="employeeSalary">Salary:</label>
-            <input ng-model="employeeSalary" type="number" id="employeeSalary" name="employeeSalary" />
+            <input ng-model="formContent.employeeSalary" type="number" id="employeeSalary" name="employeeSalary" />
 
-            <input ng-click="appendDom()" type="submit" value="Submit Employee" />
+            <button ng-click="appendDom()">Submit Employee</button>
         </form>
     </div>
-    <div id="container">
-        <h2> Employees </h2> {{employeeinfo}}
-
+    <h2> Employees </h2>
+    <p>Monthly Salary Cost: {{monthlySalary}}</p>
+    <div id="container" ng-repeat="employee in employeeArray">
+        <h2>{{employee.employeeFirstName + ' ' + employee.employeeLastName}}</h2>
+        <p>{{employee.employeeID}}</p>
+        <p>{{employee.employeeJobTitle}}</p>
+        <p>{{employee.employeeSalary | currency}}</p>
     </div>
     <!-- <script src="jquery-3.0.0.min.js" type="text/javascript"></script> -->
     <script type="text/javascript" src="../vendors/angular.min.js"></script>
